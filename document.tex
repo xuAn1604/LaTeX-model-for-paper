@@ -1,0 +1,144 @@
+% 系统：Windows 10 Pro
+% 环境：Texlive 2017
+% 编译器：XeLaTeX
+
+\documentclass[titlepage]{article}
+
+\usepackage{geometry}			% 配置页面格式
+\geometry{left = 3cm, right = 2.5cm, top = 3cm, bottom = 3cm}
+\usepackage[UTF8]{ctex}			% 添加中文支持
+\usepackage{booktabs}			% 生成三线表
+\usepackage{amsmath}			% 数学环境
+\usepackage{array}				% 调整表格行高
+\usepackage[final]{pdfpages}	% 插入pdf页面
+\usepackage{graphics}			% 插入图片
+\usepackage{lipsum}
+\usepackage{subfig}
+
+
+% 设置英文字体
+\setmainfont{Times New Roman}
+
+% 定义字体大小
+% 调用方式：\chuhao{内容}
+\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
+\newcommand{\xiaochu}{\fontsize{36pt}{\baselineskip}\selectfont}
+\newcommand{\yihao}{\fontsize{28pt}{\baselineskip}\selectfont}
+\newcommand{\erhao}{\fontsize{21pt}{\baselineskip}\selectfont}
+\newcommand{\xiaoer}{\fontsize{18pt}{\baselineskip}\selectfont}
+\newcommand{\sanhao}{\fontsize{15.75pt}{\baselineskip}\selectfont}
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}
+\newcommand{\xiaosi}{\fontsize{12pt}{\baselineskip}\selectfont}
+\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}
+\newcommand{\xiaowu}{\fontsize{9pt}{\baselineskip}\selectfont}
+
+% 定义摘要环境
+\newenvironment{Abstract}{
+	\begin{center}
+		\bf{\sihao{摘\quad 要}}
+	\end{center}
+	\begin{quote}\par
+}%开始部分定义
+{
+\end{quote}
+}%结束部分定义
+
+% 定义下划线
+% 调用方式：“\dlmu[xx cm]{内容}”
+% 参数意义：xx为要生成的下划线长度，缺省值4cm
+%		  内容为下划线上的内容
+\makeatletter
+\newcommand\dlmu[2][4cm]{\hskip1pt\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3pt}
+\makeatother
+
+% 单独定义某一页的页边距
+% \newgeometry{} 定义新的页边距
+% \restoregeometry 还原原来的页边距
+
+% 定义简单的插入图片命令
+% 调用方式：\maxpic{path_of_picture/name.jpg}
+\newcommand{\maxpic}[2]{
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=\textwidth]{./pic/#1}\\
+		\caption{#2}
+	\end{figure}
+}
+\newcommand{\mikpic}[2]{
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.8\textwidth]{./pic/#1}\\
+		\caption{#2}
+	\end{figure}
+}		
+\newcommand{\midpic}[2]{
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.6\textwidth]{./pic/#1}\\
+		\caption{#2}
+	\end{figure}
+}
+\newcommand{\miepic}[2]{
+	\begin{figure}[htbp] 
+		\centering
+		\includegraphics[width=0.4\textwidth]{./pic/#1}\\
+		\caption{#2}
+	\end{figure}
+}		
+\newcommand{\minpic}[2]{
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.2\textwidth]{./pic/#1}\\
+		\caption{#2}
+	\end{figure}
+}
+\newcommand{\doublepic}[4]{
+\begin{figure}[htbp]
+		 \begin{minipage}[!htbp]{0.5\textwidth}
+		 \centering
+		 \includegraphics[width=0.5\textwidth]{./pic/#1}
+		 \caption{#2}
+		 \end{minipage}
+		 \begin{minipage}[!htbp]{0.5\textwidth}
+		 \centering
+		 \includegraphics[width=0.5\textwidth]{./pic/#3}
+		 \caption{#4}
+		 \end{minipage}
+\end{figure}}
+
+% 修改索引名
+\renewcommand\figurename{图} 		%使用中文图
+\renewcommand\tablename{表} 			%使用中文表
+\renewcommand{\contentsname}{\centerline{目\quad 录}} 	
+									%使用中文目录
+\renewcommand{\refname}{\centerline{参考文献}} 	
+									%使用中文参考文献
+
+% 自定义数学符号
+\newcommand{\myvec}[1]%向量符号的定义
+{\stackrel{\raisebox{-2pt}[0pt][0pt]{\small$\rightharpoonup$}}{#1}}
+\def\degree{${}^{\circ}$} % °的定义
+
+% ========================================================== %
+% 下面开始正文部分
+\begin{document}
+
+
+% 导入封面文件
+\input{src/titlepage.tex}
+
+
+% 导入摘要文件
+\input{src/abstract.tex}
+\newpage
+
+\tableofcontents
+\newpage
+
+% 导入正文内容
+\input{src/section.tex}
+
+% 导入参考文献
+\input{src/bibliography.tex}
+
+\end{document}
